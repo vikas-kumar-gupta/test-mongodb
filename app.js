@@ -23,33 +23,33 @@ app.get("/", (req, res) => {
   res.send("Welcome on landing page");
 });
 
-app.post("/seed-data", async (req, res) => {
-  const { username, password, firstName, lastName, phoneNumber } = req.body;
-  const userData = {
-    username: username,
-    password: password,
-  };
-  const userDetailsData = {
-    firstName: firstName,
-    lastName: lastName,
-    phoneNumber: phoneNumber,
-  };
-  const user = await User.create(userData, (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send("user data inserted successfully");
-    }
-  });
+// app.post("/seed-data", async (req, res) => {
+//   const { username, password, firstName, lastName, phoneNumber } = req.body;
+//   const userData = {
+//     username: username,
+//     password: password,
+//   };
+//   const userDetailsData = {
+//     firstName: firstName,
+//     lastName: lastName,
+//     phoneNumber: phoneNumber,
+//   };
+//   const user = await User.create(userData, (err, result) => {
+//     if (err) {
+//       res.send(err);
+//     } else {
+//       res.send("user data inserted successfully");
+//     }
+//   });
 
-  const userDetail = await UserDetail.create(userDetailsData, (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send("user details data inserted successfully");
-    }
-  });
-});
+//   const userDetail = await UserDetail.create(userDetailsData, (err, result) => {
+//     if (err) {
+//       res.send(err);
+//     } else {
+//       res.send("user details data inserted successfully");
+//     }
+//   });
+// });
 
 app.post("/sign-up", async (req, res) => {
   const { username, password, firstName, lastName, phoneNumber } = req.body;
