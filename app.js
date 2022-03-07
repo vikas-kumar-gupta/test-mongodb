@@ -29,7 +29,7 @@ app.use(express.json());
     3. get - /user/usernam                                      Done
     4. get - /user/user-list                                    Done
     5. put - /user/username/edit                                --pending
-    6. delete - /user/username/delete                           --pending 
+    6. delete - /user/username/delete                           Done 
 */
 
 // API routes
@@ -75,9 +75,20 @@ app.get("/user/:username", async (req, res) => {
   }
 });
 
-app.put("/user/username/edit", async (req, res) => {});
-
-app.delete("/user/username/delete", async (req, res) => {});
+app.delete("/user/:username/delete", async (req, res) => {
+  const username = req.params.username;
+  User.findOneAndDelete({ username: username }, (err, data) => {
+    if (err) {
+      res.send("some error occurred");
+    } else {
+        if(data) {
+            res.send('Data deleted successfully');
+        } else {
+            res.send('Could not find user')
+        }
+    }
+  });
+});
 
 app.post("/sign-up", async (req, res) => {
   const { username, password, firstName, lastName, phoneNumber } = req.body;
